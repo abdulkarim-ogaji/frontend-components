@@ -1,54 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
-  --animated-nav-speed: 300ms;
-  --nav-item-width: 90px;
+  --transition-duration: 300ms;
+  --background-color: #f7f7f8;
+  --outline-color: coral;
+  --dark-theme-color: hsla(252, 13%, 46%, 1);
 }
 
-.animated-nav {
+body {
+  font-family: "Hind", -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif;
+  font-size: 13px;
+}
+
+.layout {
   display: flex;
-  position: relative;
-}
-.animated-nav a {
-  width: var(--nav-item-width);
-  padding: 8px;
-  border-radius: 8px;
-  transition: var(--animated-nav-speed);
-  z-index: 1;
-  display: inline-flex;
-  justify-content: center;
 }
 
-.animated-nav .slide {
-  width: var(--nav-item-width);
+.layout__sidebar {
+  width: 40px;
+  padding-inline: 0.5rem;
+  padding-top: 1rem;
+  background-color: var(--background-color);
+  height: 100vh;
+  transition: var(--transition-duration);
+}
+.layout__sidebar.open {
+  width: 224px;
+}
+
+.logoSvg {
+  display: block;
+  width: 100px;
+}
+
+.layout__sidebar__showOnHover,
+.layout__sidebar:hover .layout__sidebar__hideOnHover {
+  display: none;
+}
+
+.layout__sidebar:hover .layout__sidebar__showOnHover,
+.layout__sidebar__hideOnHover {
+  display: inline;
+}
+
+.hideNavIcon {
+  opacity: 0.9;
+  width: 32px;
+  height: 32px;
+  padding: 5px 2px;
+  transition: var(--transition-duration);
+  border-radius: 50%;
+}
+
+.hideNavIcon:hover {
+  background-color: hsla(246, 16%, 26%, 0.1);
+  opacity: 1;
+}
+
+.hideNavIcon:active {
+  background-color: hsla(246, 16%, 26%, 0.2);
+}
+
+.layout__main {
+  max-width: unset;
+  margin-inline: auto;
   padding: 10px;
-  border-radius: 8px;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  transition: var(--animated-nav-speed);
-  opacity: 0;
-  background-color: #86654b;
-  /* z-index: -1; */
-  pointer-events: none;
 }
 
-.animated-nav a.active {
+.expandableSearch__button {
+  cursor: pointer;
+  border-radius: 100cqw;
+}
+
+.expandableSearch__button:hover {
+  border-color: var(--outline-color);
+}
+.expandableSearch__button__input {
+  appearance: none;
+  cursor: pointer;
+  height: 35px;
+  background-color: transparent;
+}
+.expandableSearch__button__input:focus {
+  outline: none;
+}
+
+.expandableSearch__input {
+  appearance: none;
+  cursor: pointer;
+  height: 35px;
+  background-color: transparent;
+}
+
+.expandableSearch__input:focus {
+  outline: none;
+}
+.expanded__input__container:has(.expandableSearch__input:focus) {
+  border-color: coral;
+  cursor: default;
+}
+
+.button {
+  border-radius: 100vw;
+  padding: 0.3rem 1rem;
+  background-color: coral;
   color: white;
 }
 
-.animated-nav a:nth-child(2).active ~ .slide {
-  left: var(--nav-item-width);
-  opacity: 1;
-}
-.animated-nav a:nth-child(1).active ~ .slide {
+.dark-overlay {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.2);
+  top: 0;
+  right: 0;
   left: 0;
-  opacity: 1;
+  height: 100cqh;
+  z-index: 1;
 }
-.animated-nav a:nth-child(3).active ~ .slide {
-  left: calc(2 * var(--nav-item-width));
-  opacity: 1;
+
+.pill {
+  border-radius: 100vw;
 }
-.animated-nav a:nth-child(4).active ~ .slide {
-  left: calc(3 * var(--nav-item-width));
-  opacity: 1;
+
+.layout__main__container {
+  container-type: inline-size;
+  container-name: layout-main;
+}
+/* tailwind breakpoints */
+@media (min-width: 640px) {
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 1024px) {
+}
+@media (min-width: 1280px) {
+  .layout__main {
+    max-width: 1000px;
+  }
+}
+@media (min-width: 1536px) {
+}
+
+@container layout-main (min-width: 1000px) {
+  .layout__main {
+    max-width: 1000px;
+  }
 }

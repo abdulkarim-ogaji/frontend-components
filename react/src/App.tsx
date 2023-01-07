@@ -7,8 +7,6 @@ import {
 
 import "./App.css";
 import Layout from "./components/Layout";
-import AboutPage from "./pages/AboutPage";
-import ContactPage from "./pages/ContactPage";
 import HomePage from "./pages/HomePage";
 
 let router = createBrowserRouter(
@@ -19,9 +17,20 @@ let router = createBrowserRouter(
       errorElement={<h1>Abdulkarim's error Element</h1>}
     >
       <Route index element={<HomePage />} />
-      <Route path="about" element={<AboutPage />} />
-      <Route path="contact" element={<ContactPage />} />
-      <Route path="akc" element={<HomePage />} />
+      <Route
+        path="dest"
+        loader={({ request }) => {
+          const url = new URL(request.url);
+          return fetch(
+            "https://jsonplaceholder.typicode.com/todos" +
+              "?page=1&limit=" +
+              url.searchParams.get("limit"),
+            {
+              signal: request.signal,
+            }
+          );
+        }}
+      />
     </Route>
   )
 );
