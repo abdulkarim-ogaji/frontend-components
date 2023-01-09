@@ -10,6 +10,7 @@
   --transition-duration: 300ms;
   --background-color: #f7f7f8;
   --outline-color: coral;
+  --primary-color: coral;
   --dark-theme-color: hsla(252, 13%, 46%, 1);
 }
 
@@ -109,7 +110,7 @@ body {
 .button {
   border-radius: 100vw;
   padding: 0.3rem 1rem;
-  background-color: coral;
+  background-color: coral !important;
   color: white;
 }
 
@@ -123,8 +124,35 @@ body {
   z-index: 1;
 }
 
+.dark-overlay-2 {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.2);
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
 .pill {
   border-radius: 100vw;
+}
+
+.show-on-parent-hover {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+*:has(> .show-on-parent-hover):hover .show-on-parent-hover {
+  opacity: 1;
+}
+
+.menu-link.active {
+  background-color: #eee;
+}
+
+.settings-menu__link.active {
+  border-bottom-width: 4px;
+  border-color: var(--primary-color);
 }
 
 .layout__main__container {
@@ -138,16 +166,11 @@ body {
 }
 @media (min-width: 1024px) {
 }
-@media (min-width: 1280px) {
-  .layout__main {
-    max-width: 1000px;
-  }
-}
 @media (min-width: 1536px) {
 }
 
 @container layout-main (min-width: 1000px) {
   .layout__main {
-    max-width: 1000px;
+    max-width: 920px;
   }
 }
