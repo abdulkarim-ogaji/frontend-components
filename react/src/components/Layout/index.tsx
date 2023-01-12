@@ -5,15 +5,22 @@ import ScrollToTop from "../../utils/ScrollToTop";
 import AvatarButton from "../AvatarButton";
 import Button from "../Button";
 import ExpandableSearchBar from "../ExpandableSearchBar";
-import HideNavigationIcon from "../Icons/HideNavigationIcon";
-import Logo from "../Icons/Logo";
+import {
+  Logo,
+  HomeIcon,
+  LibraryIcon,
+  NotificationIcon,
+  HistoryIcon,
+  SettingsIcon,
+  HideNavigationIcon,
+} from "../Icons";
 
 const routes = [
-  { name: "Home", path: "/" },
-  { name: "Library", path: "/library" },
-  { name: "Notifications", path: "/notifications" },
-  { name: "History", path: "/history" },
-  { name: "Settings", path: "/settings/account" },
+  { name: "Home", path: "/", icon: <HomeIcon /> },
+  { name: "Library", path: "/library", icon: <LibraryIcon /> },
+  { name: "Notifications", path: "/chat", icon: <NotificationIcon /> },
+  { name: "History", path: "/history", icon: <HistoryIcon /> },
+  { name: "Settings", path: "/settings/account", icon: <SettingsIcon /> },
 ];
 
 export default function Layout() {
@@ -32,7 +39,9 @@ export default function Layout() {
               </span>
             </Link>
           ) : (
-            <h1 className="text-4xl layout__sidebar__hideOnHover">H</h1>
+            <h1 className="text-4xl layout__sidebar__hideOnHover">
+              <HideNavigationIcon />
+            </h1>
           )}
 
           <button
@@ -47,10 +56,12 @@ export default function Layout() {
           {routes.map((route, idx) => (
             <NavLink
               key={idx}
-              className={`hover:bg-gray-200 duration-200 pill p-2 px-3 w-full flex justify-start menu-link mb-1`}
+              className={`${
+                open ? "hover:bg-gray-200 px-3" : ""
+              }  hover:text-[var(--primary-color)] duration-200 pill py-2 w-full flex justify-start items-center gap-2 menu-link mb-1`}
               to={route.path}
             >
-              {route.name}
+              {route.icon} {open ? route.name : ""}
             </NavLink>
           ))}
         </div>
@@ -64,7 +75,7 @@ export default function Layout() {
             <Link to="/" className="text-[var(--dark-theme-color)]">
               24/25 videos
             </Link>
-            <Button>Upgrade</Button>
+            <Button loading={false}>Upgrade</Button>
           </div>
           <AvatarButton />
         </div>

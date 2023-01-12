@@ -68,6 +68,10 @@ body {
   background-color: hsla(246, 16%, 26%, 0.2);
 }
 
+.menu-link.active .menu-icon path {
+  fill: var(--primary-color);
+}
+
 .layout__main {
   max-width: unset;
   margin-inline: auto;
@@ -112,6 +116,70 @@ body {
   padding: 0.3rem 1rem;
   background-color: coral !important;
   color: white;
+  background-color: #00000008;
+}
+
+.chat {
+  background: linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5);
+  /* background-color: coral; */
+}
+
+.chat__content__contacts::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+
+.chat__content__contacts::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+
+.chat__content__contacts::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+
+.chat__content__contacts::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.chat__content {
+  display: grid;
+  grid-template-columns: 1.3fr 3fr;
+}
+
+.chat__content > div {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.chat__content__search {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.chat__content__search input {
+  background-color: transparent;
+  color: white;
+  padding-left: 10px;
+}
+
+.chat__content__search input:focus {
+  outline: none;
+}
+
+.chat__content__contacts {
+  overflow-y: auto;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1;
 }
 
 .dark-overlay {
@@ -147,7 +215,14 @@ body {
 }
 
 .menu-link.active {
+  color: var(--primary-color);
+}
+.menu-link.active.px-3 {
   background-color: #eee;
+}
+
+.menu-icon {
+  min-width: 24px;
 }
 
 .settings-menu__link.active {

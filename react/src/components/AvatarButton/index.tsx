@@ -31,7 +31,7 @@ export default function AvatarButton() {
               <p className="font-thin">
                 Zero videos posted to Abdulkarim's workspace
               </p>
-              <Button>Upgrade</Button>
+              <Button loading={false}>Upgrade</Button>
             </div>
             <Menu.Item>
               {({ active }) => (

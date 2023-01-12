@@ -8,6 +8,8 @@ import {
 import "./App.css";
 import Layout from "./components/Layout";
 import { GlobalContextProvider } from "./context/globalContext";
+import ChatPage from "./pages/ChatPage";
+import ChatMessages from "./pages/ChatPage/ChatMessages";
 import HomePage from "./pages/HomePage";
 import Settings from "./pages/Settings";
 import Account from "./pages/Settings/Account";
@@ -31,19 +33,21 @@ let router = createBrowserRouter(
         />
       </Route>
       <Route
-        path="dest"
-        loader={({ request }) => {
-          const url = new URL(request.url);
-          return fetch(
-            "https://jsonplaceholder.typicode.com/todos" +
-              "?page=1&limit=" +
-              url.searchParams.get("limit"),
-            {
-              signal: request.signal,
-            }
-          );
-        }}
-      />
+        path="chat"
+        element={<ChatPage />}
+        errorElement={<h1>Chat Error</h1>}
+      >
+        <Route
+          index
+          element={<ChatMessages />}
+          errorElement={<h1>Chat messages Error</h1>}
+        />
+        <Route
+          path=":id"
+          element={<ChatMessages />}
+          errorElement={<h1>Chat messages Error</h1>}
+        />
+      </Route>
     </Route>
   )
 );
